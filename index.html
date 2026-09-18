@@ -1,62 +1,90 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mabuhay! Quiz</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARC Reading Challenge 2026–2027</title>
 <style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:18px;background:linear-gradient(135deg,#9edff0,#fff0a4);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17233b}
-.card{max-width:720px;margin:40px auto;background:#fff;border-radius:24px;padding:24px;box-shadow:0 12px 35px #3455}
-h1{margin:0;color:#f0a020;text-shadow:2px 2px #c95c32;font-size:44px}.sub{font-size:20px;font-weight:800}
-.row{display:flex;justify-content:space-between;font-weight:800;margin:18px 0 10px}.track{height:12px;background:#e4ebf0;border-radius:20px;overflow:hidden}.bar{height:100%;background:#4399ca;width:6.67%}
-#q{font-size:25px;font-weight:850;margin:24px 0 16px}.answers{display:grid;gap:12px}.ans{width:100%;padding:15px;border:2px solid #cad8e3;background:#fff;border-radius:14px;text-align:left;font-size:17px;font-weight:750}.correct{background:#dff5e8;border-color:#16834b}.wrong{background:#fde3e3;border-color:#c63f3f}
-#feedback{font-size:19px;font-weight:900;min-height:30px;margin-top:15px}.next{display:none;margin-left:auto;padding:12px 20px;border:0;border-radius:12px;background:#ef8b2c;color:#fff;font-size:17px;font-weight:900}
-.small{font-size:13px;color:#657080;margin-top:22px}
+:root{--blue:#2d6f9f;--orange:#ee8b2d;--ink:#172b43;--good:#1d824b;--bad:#c64040}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(145deg,#dff5ff,#fff4ba);padding:18px}
+.card{max-width:760px;margin:25px auto;background:#fff;border-radius:24px;padding:clamp(20px,5vw,34px);box-shadow:0 12px 35px #3453}
+h1{text-align:center;color:var(--blue);font-size:clamp(31px,7vw,52px);margin:0 0 4px}.subtitle{text-align:center;font-weight:800;margin-bottom:28px}
+label{font-weight:850;display:block;margin:16px 0 7px}.select{width:100%;padding:15px;font-size:17px;border:2px solid #ccdbe6;border-radius:13px;background:white}
+.info{background:#f3f8fc;border-radius:13px;padding:14px;margin:18px 0;color:#526579}.primary,.secondary{border:0;border-radius:13px;padding:14px 19px;font-size:17px;font-weight:900;cursor:pointer;touch-action:manipulation}.primary{background:var(--orange);color:#fff}.secondary{background:#e9f1f6;color:#284a65}.primary:disabled{opacity:.45}
+.full{width:100%}.hidden{display:none!important}.top{display:flex;justify-content:space-between;gap:10px;font-weight:850}.track{height:11px;background:#e7eef3;border-radius:99px;overflow:hidden;margin:14px 0 22px}.bar{height:100%;background:#499bd0}.question{font-size:clamp(21px,5vw,27px);font-weight:850;margin:10px 0 18px}.answers{display:grid;gap:11px}.answer{width:100%;padding:15px;border:2px solid #cedae4;border-radius:14px;background:#fff;text-align:left;font-size:17px;font-weight:750;cursor:pointer;touch-action:manipulation}.answer.correct{background:#dff5e8;border-color:var(--good)}.answer.wrong{background:#fde3e3;border-color:var(--bad)}.feedback{font-size:19px;font-weight:900;min-height:32px;margin:15px 0}.actions{display:flex;justify-content:space-between;gap:10px}.result{text-align:center}.scoreBig{font-size:64px;font-weight:950;color:var(--blue);margin:8px}.review{text-align:left;margin-top:28px}.miss{border-top:1px solid #e1e8ed;padding:15px 0}.miss b{display:block;margin-bottom:7px}.wrongText{color:var(--bad)}.rightText{color:var(--good)}.badge{display:inline-block;background:#e5f4ea;color:#247047;border-radius:99px;padding:5px 9px;font-size:12px;font-weight:850}
 </style>
 </head>
-<body><main class="card">
-<h1>MABUHAY!</h1><div class="sub">6th Grade Quiz Challenge</div>
-<div class="row"><span id="num">Question 1 of 15</span><span id="score">Score: 0</span></div>
-<div class="track"><div class="bar" id="bar"></div></div>
-<div id="q">What is the family's business?</div>
-<div class="answers" id="answers">
-<button class="ans" data-n="0">A. Food truck</button>
-<button class="ans" data-n="1">B. Bakery</button>
-<button class="ans" data-n="2">C. Grocery store</button>
-<button class="ans" data-n="3">D. Hotel</button>
-</div>
-<div id="feedback"></div><button class="next" id="next">Next →</button>
-<div class="small">Tap an answer. Your score is tracked automatically.</div>
-</main>
+<body>
+<section id="home" class="card">
+<h1>📚 ARC Reading Challenge</h1>
+<div class="subtitle">2026–2027 • 5th Grade Practice</div>
+<label for="book">Choose a book</label>
+<select id="book" class="select">
+<option value="mabuhay">Mabuhay! — Zachary Sterling</option>
+<option value="lastdragon">The Last Dragon on Mars — Scott Reintgen</option>
+<option value="willsrace">Will's Race for Home — Jewell Parker Rhodes</option>
+<option value="dogtown">Dogtown — Katherine Applegate & Gennifer Choldenko</option>
+<option value="somethinghome">Something Like Home — Andrea Beatriz Arango</option>
+<option value="safiyyah">Safiyyah's War — Hiba Noor Khan</option>
+</select>
+<div id="availability" class="info"><span class="badge">READY</span> 15 practice questions available.</div>
+<button id="start" class="primary full">Start Quiz</button>
+</section>
+
+<section id="quiz" class="card hidden">
+<div class="top"><span id="quizBook"></span><span id="score">Score: 0</span></div>
+<div class="track"><div id="bar" class="bar"></div></div>
+<div id="counter"></div><div id="question" class="question"></div><div id="answers" class="answers"></div>
+<div id="feedback" class="feedback"></div>
+<div class="actions"><button id="quit" class="secondary">← Books</button><button id="next" class="primary hidden">Next →</button></div>
+</section>
+
+<section id="result" class="card result hidden">
+<h1>Quiz Complete!</h1><div id="resultBook"></div><div id="finalScore" class="scoreBig"></div><div id="percent"></div>
+<div style="margin-top:22px"><button id="again" class="primary">Play Again</button> <button id="booksBtn" class="secondary">Choose Book</button></div>
+<div id="review" class="review"></div>
+</section>
+
 <script>
-var qs=[
-["What is the family's business?",["Food truck","Bakery","Grocery store","Hotel"],0],
-["The supernatural creatures are mainly inspired by:",["Filipino folklore","Greek mythology","Roman mythology","Norse mythology"],0],
-["Which is an important theme in Mabuhay!?",["Cultural identity","Becoming famous","Winning at sports","Technology"],0],
-["Food in the story often helps connect:",["Family and culture","Enemies and rivals","Teachers and students","Athletes and coaches"],0],
-["The supernatural adventure helps connect the kids with:",["Their heritage","A sports team","A science project","A new school"],0],
-["Besides supernatural danger, which conflict matters?",["Family expectations","Winning a race","Finding treasure","Passing a math test"],0],
-["Filipino folklore is important to the story.",["True","False"],0],
-["The food truck is only a background setting.",["True","False"],1],
-["JJ and Althea always react to problems the same way.",["True","False"],1],
-["Family relationships are important to the story.",["True","False"],0],
-["The book mixes modern life with traditional folklore.",["True","False"],0],
-["Which BEST supports cultural identity as a theme?",["Food, traditions, and folklore","Number of pages","Cover colors","Number of panels"],0],
-["Without the supernatural elements, what would still matter?",["Family and culture","Magic battles","Monster powers","Magical weapons"],0],
-["Why mix family life with supernatural events?",["Explore real and magical conflicts","Make every problem magical","Avoid character development","Make the setting confusing"],0],
-["Which idea BEST fits the story?",["Heritage can shape identity","Traditions should be forgotten","Family never disagrees","Adventure solves every problem"],0]
-];
-var i=0,s=0,locked=false;
+const titles={
+mabuhay:"Mabuhay!",lastdragon:"The Last Dragon on Mars",willsrace:"Will's Race for Home",
+dogtown:"Dogtown",somethinghome:"Something Like Home",safiyyah:"Safiyyah's War"
+};
+const bank={"mabuhay":[["What are the siblings' names?",["JJ and Althea","Lunar and Dread","Laura and Benson","Will and Caesar"],0],["What is the Bulan family's business?",["A food truck","A bakery","A grocery store","A hotel"],0],["What is the food truck called?",["The Beautiful Pig","The Lucky Dragon","Home Plate","The Silver Spoon"],0],["What does JJ have to wear while helping at the food truck?",["A pig costume","A chef's hat","A dragon costume","A school mascot suit"],0],["What does Althea hand out at the food truck?",["Samples","Flyers","Tickets","Books"],0],["How is JJ described at the beginning?",["Self-conscious about how others see him","Unconcerned with fitting in","Eager to become a chef","Obsessed with sports"],0],["How is Althea different from JJ?",["She wants people to accept her as she is","She desperately wants to fit in","She dislikes Filipino food","She refuses to help her family"],0],["What happens to the siblings' surname at school?",["People mispronounce it","Teachers refuse to use it","It is changed legally","Nobody knows it"],0],["Why is JJ bullied?",["For being unathletic","For being too tall","For being a great cook","For speaking Tagalog"],0],["What do kids criticize about Althea?",["Her Filipino lunches","Her grades","Her drawings","Her shoes"],0],["Who is Tito Arvin?",["Their father's younger brother","Their mother's teacher","JJ's best friend","The food-truck owner"],0],["Why does Tito Arvin unexpectedly appear?",["To warn the family of danger","To buy the food truck","To take the kids to school","To enter a cooking contest"],0],["What do JJ and Althea share before the attacks?",["The same creepy nightmare","A secret recipe","A school detention","A magical book"],0],["What attacks the siblings?",["Witches and a monster","Robots and aliens","Ghost pirates","Wild animals"],0],["What secret do the siblings learn about their mother?",["She has magical powers","She is a famous singer","She owns another restaurant","She was a professional athlete"],0],["Who raised their mother?",["Witches","Dragons","Her grandparents","Monks"],0],["What are the witches doing?",["Pursuing the family","Protecting the school","Running the food truck","Teaching JJ magic"],0],["What culture's folklore and mythology shape the story?",["Filipino","Greek","Norse","Egyptian"],0],["What language appears in the dialogue with footnote help?",["Tagalog","French","Latin","Japanese"],0],["What must JJ and Althea learn to embrace to help save the day?",["Who they are and their culture","Popularity at school","Athletic competition","Life away from family"],0]],"lastdragon":[["How old is Lunar Jones?",["13","10","16","18"],0],["On what planet does Lunar live?",["Mars","Earth","Venus","Jupiter"],0],["What is Lunar's settlement called?",["Harvest","Haven","Olympus","Red City"],0],["What does Lunar do for work?",["Scraps valuable gear","Farms wheat","Repairs schools","Trains horses"],0],["Where does Lunar live with other orphans?",["Martian Relocation Clinic","Dread Academy","Harvest Palace","Poppy Station"],0],["What nickname do the other orphans give Lunar?",["Dad","Captain","Dragon","General"],0],["Why is life on Mars dangerous?",["Plants, animals, and weather threaten survival","Humans cannot breathe at all","There is no gravity","The planet is completely underwater"],0],["Who was Mars's King-Dragon?",["Ares","Dread","Gaia","Phobos"],0],["What did humans hope killing Ares would do?",["Turn Mars into a paradise like Earth","Destroy Earth","Create a new moon","End space travel"],0],["What happened to that plan?",["It backfired","It worked immediately","Earth stopped it","Ares escaped"],0],["What happens before Lunar discovers the bunker?",["A rival salvage group attacks","He wins a school contest","He leaves Mars voluntarily","He finds a new city"],0],["Where does Lunar regain consciousness?",["An underground bunker","A hospital on Earth","A spaceship to Venus","The relocation clinic"],0],["Who cares for Lunar in the bunker?",["General John Poppy","Ares","His parents","Caesar"],0],["What is General Poppy secretly raising?",["A dragon","A robot dog","A Martian horse","A giant bird"],0],["What is the dragon's name?",["Dread","Ares","Harvest","Lunar"],0],["What will Dread eventually choose?",["A dragoon","A king","A planet","A doctor"],0],["What is a dragoon in the story?",["A human bonded with a dragon for life","A Martian storm","A type of spaceship","A salvage tool"],0],["What is special about celestial bodies in this story world?",["Each has its own dragon avatar","Each is ruled by humans","None can support dragons","All are abandoned"],0],["What is Lunar fighting to save?",["Mars","Earth","The Moon","Venus"],0],["Which description best fits the book?",["Science fiction mixed with fantasy","Realistic school fiction","Historical western","Mystery without fantasy"],0]],"willsrace":[["What is the main character's name?",["William 'Will' Samuels","George Poppy","Caesar Jones","Benson Rhodes"],0],["Who travels with Will as his father?",["George","Caesar","John","Arvin"],0],["Where does Will's family begin the journey?",["Texas","California","New York","Florida"],0],["Where are Will and George trying to go?",["Oklahoma","Alaska","Virginia","Arizona"],0],["What historical event drives the story?",["The Oklahoma Land Rush of 1889","The California Gold Rush","The Civil War","World War I"],0],["Why does George want to leave Texas?",["He wants land and greater freedom for his family","He wants to join the army","He wants to become a sailor","He wants to attend college"],0],["What is the name of Will's mule?",["Belle","Sparrow","Dread","Chance"],0],["What dangerous animal threatens Belle?",["A rattlesnake","A bear","A wolf","An alligator"],0],["What does Will do when the rattlesnake threatens Belle?",["He kills it","He abandons Belle","He runs home","He sells Belle"],0],["Who is Caesar?",["A former Union soldier","A Confederate general","Will's brother","A land-office clerk"],0],["What role does Caesar increasingly play for Will?",["Mentor","Schoolteacher","Doctor","Employer"],0],["What was George's childhood marked by?",["Enslavement","Wealth","Life in Europe","Military school"],0],["What does Will learn about George during the journey?",["A painful secret from his past","That George cannot read","That George owns land already","That George plans to return alone"],0],["How does Will and George's relationship change?",["They grow closer and develop mutual respect","They stop speaking","Will leaves George","They become business rivals"],0],["What does Will's literacy help him do early in the story?",["Understand information that affects the family's future","Become a soldier","Repair a wagon","Train Belle"],0],["Who secretly helped Will learn to read?",["Anna","Caesar","John","Grandpa alone"],0],["What kind of fiction is the novel?",["Historical fiction","Science fiction","Fantasy","Mystery"],0],["Which challenge does Will face in addition to physical danger?",["Racism","Alien invasion","Magic curses","Robot competition"],0],["What does the family's quest for land represent?",["Independence and a home of their own","A vacation","A school assignment","A treasure hunt"],0],["Which quality does Will develop through the journey?",["Courage and perseverance","Carelessness","Jealousy","Dishonesty"],0]],"dogtown":[["What is Dogtown?",["A shelter for dogs","A dog-training school","A robot factory","A pet store"],0],["Who narrates the story?",["Chance","Mouse","Metal Head","Quinn"],0],["How many legs does Chance have?",["Three","Four","Two","One"],0],["What two kinds of dogs live at Dogtown?",["Organic and robot dogs","Only puppies and old dogs","Wild and farm dogs","Police and guide dogs"],0],["Why did Chance end up separated from her family?",["Irresponsible dog-sitters skipped town","Her family deliberately abandoned her","She ran away during a storm","She was born at Dogtown"],0],["Who is Chance's small best friend?",["Mouse","Quinn","Geraldine","Buster"],0],["What kind of dog is Metal Head?",["A robot dog","A police dog","A three-legged dog","A stray puppy"],0],["What does Metal Head want most?",["To return to a real home","To become shelter manager","To replace Chance","To live in the basement"],0],["What is unusual about Metal Head compared with most robot dogs?",["He does not simply obey every command","He cannot move","He looks exactly like Chance","He is afraid of electricity"],0],["What is First Cage?",["The kennel humans see first","The punishment room","Mouse's home","The robot charging room"],0],["Why are organic dogs resentful of robot dogs?",["Robot dogs are often adopted more easily","Robot dogs eat all the food","Robot dogs control the shelter","Robot dogs chase Mouse"],0],["What special event brings children to read with dogs?",["Reading buddy day","Adoption race day","Robot day","Training day"],0],["Which child connects with Metal Head through reading?",["Quinn","Will","JJ","Benson"],0],["Which book becomes important to Metal Head and Quinn?",["Green Eggs and Ham","Charlotte's Web","The Hobbit","Hatchet"],0],["What is the 'List' feared by the organic dogs?",["A list determining when dogs may be put down","A list of reading buddies","A list of robot repairs","A list of food orders"],0],["What does Metal Head propose to help an older dog get adopted?",["A tail-out protest","A race","A barking contest","A hunger strike"],0],["What does Chance mistake a sign outside for?",["A missing-dog poster for her","A Dogtown advertisement","A map home","A warning sign"],0],["What happens when Chance finally returns to her old home?",["Her family is there and welcomes her back","The house is empty","Metal Head owns it","She returns to Dogtown immediately"],0],["How does Chance's view of Metal Head change?",["Suspicion grows into understanding and friendship","She distrusts him more and more","She never notices him","She decides all robots are dangerous"],0],["Which theme is central to the story?",["Belonging and what makes a family","Winning at sports","Space exploration","Historical land ownership"],0]],"somethinghome":[["Who is the main character?",["Laura Rodríguez Colón","Titi Silvia","Benson","Sparrow"],0],["How old is Laura?",["11","8","14","16"],0],["Why is Laura removed from her parents' home?",["She calls 911 after finding them unresponsive","She runs away from school","Her aunt requests custody for no reason","Her family moves overseas"],0],["Where are Laura's parents sent?",["Rehab","Prison","A military base","Another country"],0],["Who does Laura go to live with?",["Titi Silvia","Benson's family","Her teacher","Her grandmother"],0],["How is Titi Silvia related to Laura?",["She is Laura's aunt","She is Laura's sister","She is Laura's teacher","She is Laura's social worker"],0],["What is Titi Silvia's profession?",["Doctor","Teacher","Chef","Lawyer"],0],["How does Laura initially view her new living arrangement?",["Temporary","Permanent and exciting","A vacation","A punishment from school"],0],["What animal does Laura rescue?",["A puppy","A kitten","A bird","A rabbit"],0],["What does Laura name the puppy?",["Sparrow","Chance","Belle","Dread"],0],["Why does Laura want to train Sparrow as a therapy dog?",["She hopes it will let her visit her parents in rehab","She wants to win prize money","Her school requires it","Silvia wants a hospital pet"],0],["Who becomes Laura's friend at her new school?",["Benson","Quinn","JJ","Will"],0],["What health condition does Benson have?",["Sickle cell disease","Diabetes","Asthma","Epilepsy"],0],["Who is Laura's first social-services case worker?",["Janet","Brenda","Silvia","Elsa"],0],["What is the name of Laura's aunt?",["Silvia","Anna","Hana","Althea"],0],["What is the book's literary form?",["A novel in verse","A graphic novel","A play","A collection of news articles"],0],["What cultural background does Laura's family have?",["Puerto Rican","Filipino","Algerian French","Martian"],0],["What does Laura feel guilty about?",["Calling 911 and the resulting separation","Losing Sparrow","Failing a class","Moving away voluntarily"],0],["What happens when Laura's parents leave rehab early?",["Her stay with Silvia may become permanent","Laura immediately goes home","Silvia moves away","Sparrow is taken away"],0],["What does Laura gradually learn about creating a new home?",["It does not require discarding the old one","It means forgetting her parents","It depends only on where she lives","It requires leaving Sparrow"],0]],"safiyyah":[["Where does Safiyyah live?",["At the Grand Mosque of Paris","In London","On a farm in Germany","In New York"],0],["During which war is the story set?",["World War II","World War I","The Civil War","The Cold War"],0],["Who occupies Paris?",["Nazi Germany","Britain","Italy","The United States"],0],["What is Safiyyah's family background?",["Algerian French","Puerto Rican","Filipino American","British Indian"],0],["Who is Baba?",["Safiyyah's father","Safiyyah's teacher","A German officer","Safiyyah's brother"],0],["Who is Ammo Kader?",["Safiyyah's uncle","Safiyyah's classmate","A Nazi officer","A librarian"],0],["What secret work is Baba involved in?",["The Resistance","A newspaper","A hospital","A school"],0],["What does Baba help create for persecuted Jews?",["Fake identity papers","Train tickets","School diplomas","Money"],0],["What identity do some of the fake papers give Jewish people?",["Muslim","German soldier","British citizen","French police officer"],0],["What happens to Baba because of his Resistance work?",["He comes under Nazi scrutiny and is arrested","He becomes mayor","He leaves for Britain","He joins the German army"],0],["What dangerous task does Safiyyah take over?",["Delivering papers around Paris","Flying Allied planes","Driving military trucks","Printing newspapers"],0],["Who is Hana?",["Safiyyah's Jewish friend","Safiyyah's sister","A German officer","Her teacher"],0],["What happens to Hana's parents?",["They are arrested","They move to America","They join the mosque staff","They hide in Safiyyah's school"],0],["Where are groups of Jews hidden before escape?",["In the mosque","In a castle","At Safiyyah's school","On a train"],0],["How do escapees leave the mosque area secretly?",["Through an underground tunnel","By airplane","Across rooftops","By train"],0],["Where does the underground route lead toward?",["The river","The airport","The mountains","The school"],0],["How are escapees secretly transported onward?",["On barges","On airplanes","On bicycles","On buses"],0],["What happens during the Nazi raid on the mosque?",["Safiyyah must help guide people to safety","The war immediately ends","Safiyyah leaves Paris alone","The mosque is empty"],0],["What helps guide Safiyyah's courageous choices?",["Her Muslim faith and values","A desire for fame","A school prize","A magical power"],0],["What real history inspired the novel?",["The Grand Mosque of Paris helping Jews during Nazi occupation","The Oklahoma Land Rush","A Martian colony","A famous dog shelter"],0]]};
+let chosen="", questions=[],i=0,points=0,missed=[];
+const $=x=>document.getElementById(x);
+function updateBook(){
+ chosen=$("book").value; let ready=bank[chosen].length>0;
+ $("start").disabled=!ready;
+ $("availability").innerHTML=ready?'<span class="badge">READY</span> '+bank[chosen].length+' practice questions available.':'<b>Coming soon.</b> This book is already in the library; verified competition questions will be added later.';
+}
+function start(){
+ chosen=$("book").value; if(!bank[chosen].length)return;
+ questions=[...bank[chosen]];i=0;points=0;missed=[];
+ $("home").classList.add("hidden");$("result").classList.add("hidden");$("quiz").classList.remove("hidden");draw();
+}
 function draw(){
- locked=false;document.getElementById("num").textContent="Question "+(i+1)+" of "+qs.length;
- document.getElementById("score").textContent="Score: "+s;document.getElementById("bar").style.width=((i+1)/qs.length*100)+"%";
- document.getElementById("q").textContent=qs[i][0];var box=document.getElementById("answers");box.innerHTML="";
- qs[i][1].forEach(function(x,n){var b=document.createElement("button");b.className="ans";b.textContent=(qs[i][1].length>2?String.fromCharCode(65+n)+". ":"")+x;b.onclick=function(){pick(n,b)};box.appendChild(b)});
- document.getElementById("feedback").textContent="";document.getElementById("next").style.display="none";
+ let q=questions[i];$("quizBook").textContent=titles[chosen];$("score").textContent="Score: "+points;
+ $("counter").textContent="Question "+(i+1)+" of "+questions.length;$("bar").style.width=((i+1)/questions.length*100)+"%";
+ $("question").textContent=q[0];$("answers").innerHTML="";$("feedback").textContent="";$("next").classList.add("hidden");
+ let correctText=q[1][q[2]];
+ let shuffled=q[1].map((a,n)=>({text:a,correct:n===q[2]})).sort(()=>Math.random()-.5);
+ shuffled.forEach((opt,n)=>{let b=document.createElement("button");b.className="answer";b.textContent=(q[1].length>2?String.fromCharCode(65+n)+". ":"")+opt.text;b.dataset.correct=opt.correct?"1":"0";b.dataset.answer=opt.text;b.onclick=()=>pick(b,correctText);$("answers").appendChild(b)});
 }
-function pick(n,b){if(locked)return;locked=true;var bs=document.querySelectorAll(".ans"),c=qs[i][2];bs[c].classList.add("correct");
- if(n===c){s++;document.getElementById("feedback").textContent="✓ Correct!"}else{b.classList.add("wrong");document.getElementById("feedback").textContent="✗ Correct answer: "+qs[i][1][c]}
- document.getElementById("score").textContent="Score: "+s;document.getElementById("next").style.display="block";
+function pick(b,correctText){
+ let q=questions[i],buttons=[...document.querySelectorAll(".answer")];buttons.forEach(x=>{x.disabled=true;if(x.dataset.correct==="1")x.classList.add("correct")});
+ let isCorrect=b.dataset.correct==="1";
+ if(isCorrect){points++;$("feedback").textContent="✓ Correct!"}else{b.classList.add("wrong");$("feedback").textContent="✗ Correct answer: "+correctText;missed.push({q:q[0],y:b.dataset.answer,c:correctText})}
+ $("score").textContent="Score: "+points;$("next").classList.remove("hidden");
 }
-document.getElementById("next").onclick=function(){i++;if(i<qs.length)draw();else{document.getElementById("q").textContent="Finished! Your score: "+s+" / "+qs.length;document.getElementById("answers").innerHTML="";document.getElementById("feedback").textContent="";this.textContent="Play Again";this.style.display="block";this.onclick=function(){i=0;s=0;draw();this.textContent="Next →";this.onclick=function(){i++;if(i<qs.length)draw();else location.reload()}}}};
-document.querySelectorAll(".ans").forEach(function(b){b.onclick=function(){pick(Number(b.dataset.n),b)}});
-</script></body></html>
+function finish(){
+ $("quiz").classList.add("hidden");$("result").classList.remove("hidden");$("resultBook").textContent=titles[chosen];
+ $("finalScore").textContent=points+" / "+questions.length;let p=Math.round(points/questions.length*100);$("percent").textContent=p+"%";
+ let r=$("review");if(!missed.length){r.innerHTML="<h2>Perfect score! 🎉</h2><p>No missed questions to review.</p>";return}
+ r.innerHTML="<h2>Review Missed Questions ("+missed.length+")</h2>";
+ missed.forEach((m,j)=>{r.innerHTML+=`<div class="miss"><b>${j+1}. ${m.q}</b><div class="wrongText">Your answer: ${m.y}</div><div class="rightText">Correct answer: ${m.c}</div></div>`});
+}
+function home(){$("quiz").classList.add("hidden");$("result").classList.add("hidden");$("home").classList.remove("hidden");updateBook()}
+$("book").onchange=updateBook;$("start").onclick=start;$("next").onclick=()=>{i++;i<questions.length?draw():finish()};$("quit").onclick=home;$("booksBtn").onclick=home;$("again").onclick=start;updateBook();
+</script>
+</body></html>
