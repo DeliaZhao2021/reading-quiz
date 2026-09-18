@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mabuhay! Quiz</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:18px;background:linear-gradient(135deg,#9edff0,#fff0a4);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17233b}
+.card{max-width:720px;margin:40px auto;background:#fff;border-radius:24px;padding:24px;box-shadow:0 12px 35px #3455}
+h1{margin:0;color:#f0a020;text-shadow:2px 2px #c95c32;font-size:44px}.sub{font-size:20px;font-weight:800}
+.row{display:flex;justify-content:space-between;font-weight:800;margin:18px 0 10px}.track{height:12px;background:#e4ebf0;border-radius:20px;overflow:hidden}.bar{height:100%;background:#4399ca;width:6.67%}
+#q{font-size:25px;font-weight:850;margin:24px 0 16px}.answers{display:grid;gap:12px}.ans{width:100%;padding:15px;border:2px solid #cad8e3;background:#fff;border-radius:14px;text-align:left;font-size:17px;font-weight:750}.correct{background:#dff5e8;border-color:#16834b}.wrong{background:#fde3e3;border-color:#c63f3f}
+#feedback{font-size:19px;font-weight:900;min-height:30px;margin-top:15px}.next{display:none;margin-left:auto;padding:12px 20px;border:0;border-radius:12px;background:#ef8b2c;color:#fff;font-size:17px;font-weight:900}
+.small{font-size:13px;color:#657080;margin-top:22px}
+</style>
+</head>
+<body><main class="card">
+<h1>MABUHAY!</h1><div class="sub">6th Grade Quiz Challenge</div>
+<div class="row"><span id="num">Question 1 of 15</span><span id="score">Score: 0</span></div>
+<div class="track"><div class="bar" id="bar"></div></div>
+<div id="q">What is the family's business?</div>
+<div class="answers" id="answers">
+<button class="ans" data-n="0">A. Food truck</button>
+<button class="ans" data-n="1">B. Bakery</button>
+<button class="ans" data-n="2">C. Grocery store</button>
+<button class="ans" data-n="3">D. Hotel</button>
+</div>
+<div id="feedback"></div><button class="next" id="next">Next →</button>
+<div class="small">Tap an answer. Your score is tracked automatically.</div>
+</main>
+<script>
+var qs=[
+["What is the family's business?",["Food truck","Bakery","Grocery store","Hotel"],0],
+["The supernatural creatures are mainly inspired by:",["Filipino folklore","Greek mythology","Roman mythology","Norse mythology"],0],
+["Which is an important theme in Mabuhay!?",["Cultural identity","Becoming famous","Winning at sports","Technology"],0],
+["Food in the story often helps connect:",["Family and culture","Enemies and rivals","Teachers and students","Athletes and coaches"],0],
+["The supernatural adventure helps connect the kids with:",["Their heritage","A sports team","A science project","A new school"],0],
+["Besides supernatural danger, which conflict matters?",["Family expectations","Winning a race","Finding treasure","Passing a math test"],0],
+["Filipino folklore is important to the story.",["True","False"],0],
+["The food truck is only a background setting.",["True","False"],1],
+["JJ and Althea always react to problems the same way.",["True","False"],1],
+["Family relationships are important to the story.",["True","False"],0],
+["The book mixes modern life with traditional folklore.",["True","False"],0],
+["Which BEST supports cultural identity as a theme?",["Food, traditions, and folklore","Number of pages","Cover colors","Number of panels"],0],
+["Without the supernatural elements, what would still matter?",["Family and culture","Magic battles","Monster powers","Magical weapons"],0],
+["Why mix family life with supernatural events?",["Explore real and magical conflicts","Make every problem magical","Avoid character development","Make the setting confusing"],0],
+["Which idea BEST fits the story?",["Heritage can shape identity","Traditions should be forgotten","Family never disagrees","Adventure solves every problem"],0]
+];
+var i=0,s=0,locked=false;
+function draw(){
+ locked=false;document.getElementById("num").textContent="Question "+(i+1)+" of "+qs.length;
+ document.getElementById("score").textContent="Score: "+s;document.getElementById("bar").style.width=((i+1)/qs.length*100)+"%";
+ document.getElementById("q").textContent=qs[i][0];var box=document.getElementById("answers");box.innerHTML="";
+ qs[i][1].forEach(function(x,n){var b=document.createElement("button");b.className="ans";b.textContent=(qs[i][1].length>2?String.fromCharCode(65+n)+". ":"")+x;b.onclick=function(){pick(n,b)};box.appendChild(b)});
+ document.getElementById("feedback").textContent="";document.getElementById("next").style.display="none";
+}
+function pick(n,b){if(locked)return;locked=true;var bs=document.querySelectorAll(".ans"),c=qs[i][2];bs[c].classList.add("correct");
+ if(n===c){s++;document.getElementById("feedback").textContent="✓ Correct!"}else{b.classList.add("wrong");document.getElementById("feedback").textContent="✗ Correct answer: "+qs[i][1][c]}
+ document.getElementById("score").textContent="Score: "+s;document.getElementById("next").style.display="block";
+}
+document.getElementById("next").onclick=function(){i++;if(i<qs.length)draw();else{document.getElementById("q").textContent="Finished! Your score: "+s+" / "+qs.length;document.getElementById("answers").innerHTML="";document.getElementById("feedback").textContent="";this.textContent="Play Again";this.style.display="block";this.onclick=function(){i=0;s=0;draw();this.textContent="Next →";this.onclick=function(){i++;if(i<qs.length)draw();else location.reload()}}}};
+document.querySelectorAll(".ans").forEach(function(b){b.onclick=function(){pick(Number(b.dataset.n),b)}});
+</script></body></html>
